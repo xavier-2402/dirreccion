@@ -12,9 +12,13 @@ export class AppComponent  implements OnInit  {
   title = 'direccionTest';
 
   nomenclatura:string='';
+  detalle:string = ''
   form:any;
   direccion:string = '';
-  
+  direccionCompleta: string= '';
+  valor:string=''
+  type:number=1;
+  descripcion:string = '';
 
   constructor(private formBuilder: FormBuilder){
     
@@ -27,136 +31,154 @@ export class AppComponent  implements OnInit  {
   
 
   listaNomenclaturas: nomenclatura[]=[
-    {id:1,valor:"Avenida Calle",nomenclatura:"AC"},
-    {id:2,valor:"Administración",nomenclatura:"AD"},
-    {id:3,valor:"Adelante",nomenclatura:"ADL"},
-    {id:4,valor:"Aeropuerto",nomenclatura:"AER"},
-    {id:5,valor:"Agencia",nomenclatura:"AG"},
-    {id:6,valor:"Agrupación",nomenclatura:"AGP"},
-    {id:7,valor:"Avenida carrera",nomenclatura:"AK"},
-    {id:8,valor:"Altillo",nomenclatura:"AL"},
-    {id:9,valor:"Al lado",nomenclatura:"ALD"},
-    {id:10,valor:"Almacén",nomenclatura:"ALM"},
-    {id:11,valor:"Apartamento",nomenclatura:"AP"},
-    {id:12,valor:"Atrás",nomenclatura:"ATR"},
-    {id:13,valor:"Autopista",nomenclatura:"AUT"},
-    {id:14,valor:"Avenida",nomenclatura:"AV"},
-    {id:15,valor:"Anillo vial",nomenclatura:"AVIAL"},
-    {id:16,valor:"Bodega",nomenclatura:"BG"},
-    {id:17,valor:"Bloque",nomenclatura:"BL"},
-    {id:18,valor:"Boulevard",nomenclatura:"BLV"},
-    {id:19,valor:"Barrio",nomenclatura:"BRR"},
-    {id:20,valor:"Corregimiento",nomenclatura:"C"},
-    {id:21,valor:"Casa",nomenclatura:"CA"},
-    {id:22,valor:"Caserio",nomenclatura:"CAS"},
-    {id:23,valor:"Centro comercial",nomenclatura:"CC"},
-    {id:24,valor:"Ciudadela",nomenclatura:"CD"},
-    {id:25,valor:"Célula",nomenclatura:"CEL"},
-    {id:26,valor:"Centro",nomenclatura:"CEN"},
-    {id:27,valor:"Circular",nomenclatura:"CIR"},
-    {id:28,valor:"Calle",nomenclatura:"CL"},
-    {id:29,valor:"Callejón",nomenclatura:"CLJ"},
-    {id:30,valor:"Camino",nomenclatura:"CN"},
-    {id:31,valor:"Conjunto Residencial",nomenclatura:"CON"},
-    {id:32,valor:"Conjunto",nomenclatura:"CONJUNTO"},
-    {id:33,valor:"Carrera",nomenclatura:"CR"},
-    {id:34,valor:"Carretera",nomenclatura:"CRT"},
-    {id:35,valor:"Circunvalar",nomenclatura:"CRV"},
-    {id:36,valor:"Consultorio",nomenclatura:"CS"},
-    {id:37,valor:"Diagonal",nomenclatura:"DG"},
-    {id:38,valor:"Depósito",nomenclatura:"DP"},
-    {id:39,valor:"Departamento",nomenclatura:"DPTO"},
-    {id:40,valor:"Depósito sótano",nomenclatura:"DS"},
-    {id:41,valor:"Edificio",nomenclatura:"ED"},
-    {id:42,valor:"Entrada",nomenclatura:"EN"},
-    {id:43,valor:"Escalera",nomenclatura:"ES"},
-    {id:44,valor:"Esquina",nomenclatura:"ESQ"},
-    {id:45,valor:"Este",nomenclatura:"ESTE"},
-    {id:46,valor:"Etapa",nomenclatura:"ET"},
-    {id:47,valor:"Exterior",nomenclatura:"EX"},
-    {id:48,valor:"Finca",nomenclatura:"FCA"},
-    {id:49,valor:"Garaje",nomenclatura:"GJ"},
-    {id:50,valor:"Garaje Sótano",nomenclatura:"GS"},
-    {id:51,valor:"Glorieta",nomenclatura:"GT"},
-    {id:52,valor:"Hacienda",nomenclatura:"HC"},
-    {id:53,valor:"Hangar",nomenclatura:"HG"},
-    {id:54,valor:"Interior",nomenclatura:"IN"},
-    {id:55,valor:"Inspección de Policía",nomenclatura:"IP"},
-    {id:56,valor:"Inspección Departamental",nomenclatura:"IPD"},
-    {id:57,valor:"Inspección Municipal",nomenclatura:"IPM"},
-    {id:58,valor:"Kilómetro",nomenclatura:"KM"},
-    {id:59,valor:"Local",nomenclatura:"LC"},
-    {id:60,valor:"Local mezzanine",nomenclatura:"LM"},
-    {id:61,valor:"Lote",nomenclatura:"LT"},
-    {id:62,valor:"Módulo",nomenclatura:"MD"},
-    {id:63,valor:"Mojón",nomenclatura:"MJ"},
-    {id:64,valor:"Muelle",nomenclatura:"MLL"},
-    {id:65,valor:"Mezzanine",nomenclatura:"MN"},
-    {id:66,valor:"Manzana",nomenclatura:"MZ"},
-    {id:67,valor:"Esquina",nomenclatura:"ESQ"},
-    {id:68,valor:"Vías de nombre común",nomenclatura:"NOMBRE VIA"},
-    {id:69,valor:"Norte",nomenclatura:"NORTE"},
-    {id:70,valor:"Oriente",nomenclatura:"O"},
-    {id:71,valor:"Occidente",nomenclatura:"OCC"},
-    {id:72,valor:"Oeste",nomenclatura:"OESTE"},
-    {id:73,valor:"Oficina",nomenclatura:"OF"},
-    {id:74,valor:"Piso",nomenclatura:"P"},
-    {id:75,valor:"Parcela",nomenclatura:"PA"},
-    {id:76,valor:"Parque",nomenclatura:"PAR"},
-    {id:77,valor:"Predio",nomenclatura:"PD"},
-    {id:78,valor:"Penthouse",nomenclatura:"PH"},
-    {id:79,valor:"Pasaje",nomenclatura:"PJ"},
-    {id:80,valor:"Planta",nomenclatura:"PL"},
-    {id:81,valor:"Puente",nomenclatura:"PN"},
-    {id:82,valor:"Portería",nomenclatura:"POR"},
-    {id:83,valor:"Poste",nomenclatura:"POS"},
-    {id:84,valor:"Parqueadero",nomenclatura:"PQ"},
-    {id:85,valor:"Paraje",nomenclatura:"PRJ"},
-    {id:86,valor:"Paseo",nomenclatura:"PS"},
-    {id:87,valor:"Puesto",nomenclatura:"PT"},
-    {id:88,valor:"Park Way",nomenclatura:"PW"},
-    {id:89,valor:"Round Point",nomenclatura:"RP"},
-    {id:90,valor:"Salón",nomenclatura:"SA"},
-    {id:91,valor:"Salón Comunal",nomenclatura:"SC"},
-    {id:92,valor:"Salida",nomenclatura:"SD"},
-    {id:93,valor:"Sector",nomenclatura:"SEC"},
-    {id:94,valor:"Solar",nomenclatura:"SL"},
-    {id:95,valor:"Super Manzana",nomenclatura:"SM"},
-    {id:96,valor:"Semisótano",nomenclatura:"SS"},
-    {id:97,valor:"Sótano",nomenclatura:"ST"},
-    {id:98,valor:"Suite",nomenclatura:"SUITE"},
-    {id:99,valor:"Sur",nomenclatura:"SUR"},
-    {id:100,valor:"Terminal",nomenclatura:"TER"},
-    {id:101,valor:"Terraplén",nomenclatura:"TERPLN"},
-    {id:102,valor:"Torre",nomenclatura:"TO"},
-    {id:103,valor:"Transversal",nomenclatura:"TV"},
-    {id:104,valor:"Terraza",nomenclatura:"TZ"},
-    {id:105,valor:"Unidad",nomenclatura:"UN"},
-    {id:106,valor:"Unidad residencial",nomenclatura:"UR"},
-    {id:107,valor:"Urbanización",nomenclatura:"URB"},
-    {id:108,valor:"Vereda",nomenclatura:"VRD"},
-    {id:109,valor:"Variante",nomenclatura:"VTE"},
-    {id:110,valor:"Zona franca",nomenclatura:"ZF"},
-    {id:111,valor:"Zona",nomenclatura:"ZN"}
+    {id:1,valor:"Avenida Calle",nomenclatura:"AC",type:1},
+    {id:2,valor:"Administración",nomenclatura:"AD",type:2},
+    {id:3,valor:"Adelante",nomenclatura:"ADL",type:0},
+    {id:4,valor:"Aeropuerto",nomenclatura:"AER",type:1},
+    {id:5,valor:"Agencia",nomenclatura:"AG",type:1},
+    {id:6,valor:"Agrupación",nomenclatura:"AGP",type:1},
+    {id:7,valor:"Avenida carrera",nomenclatura:"AK",type:1},
+    {id:8,valor:"Altillo",nomenclatura:"AL",type:0},
+    {id:9,valor:"Al lado",nomenclatura:"ALD",type:1},
+    {id:10,valor:"Almacén",nomenclatura:"ALM",type:1},
+    {id:11,valor:"Apartamento",nomenclatura:"AP",type:0},
+    {id:12,valor:"Atrás",nomenclatura:"ATR",type:0},
+    {id:13,valor:"Autopista",nomenclatura:"AUT",type:1},
+    {id:14,valor:"Avenida",nomenclatura:"AV",type:1},
+    {id:15,valor:"Anillo vial",nomenclatura:"AVIAL",type:1},
+    {id:16,valor:"Bodega",nomenclatura:"BG",type:1},
+    {id:17,valor:"Bloque",nomenclatura:"BL",type:0},
+    {id:18,valor:"Boulevard",nomenclatura:"BLV",type:1},
+    {id:19,valor:"Barrio",nomenclatura:"BRR",type:1},
+    {id:20,valor:"Corregimiento",nomenclatura:"C",type:1},
+    {id:21,valor:"Casa",nomenclatura:"CA",type:1},
+    {id:22,valor:"Caserio",nomenclatura:"CAS",type:1},
+    {id:23,valor:"Centro comercial",nomenclatura:"CC",type:1},
+    {id:24,valor:"Ciudadela",nomenclatura:"CD",type:1},
+    {id:25,valor:"Célula",nomenclatura:"CEL",type:1},
+    {id:26,valor:"Centro",nomenclatura:"CEN",type:1},
+    {id:27,valor:"Circular",nomenclatura:"CIR",type:0},
+    {id:28,valor:"Calle",nomenclatura:"CL",type:1},
+    {id:29,valor:"Callejón",nomenclatura:"CLJ",type:1},
+    {id:30,valor:"Camino",nomenclatura:"CN",type:1},
+    {id:31,valor:"Conjunto Residencial",nomenclatura:"CON",type:1},
+    {id:32,valor:"Conjunto",nomenclatura:"CONJ",type:1},
+    {id:33,valor:"Carrera",nomenclatura:"CR",type:1},
+    {id:34,valor:"Carretera",nomenclatura:"CRT",type:1},
+    {id:35,valor:"Circunvalar",nomenclatura:"CRV",type:0},
+    {id:36,valor:"Consultorio",nomenclatura:"CS",type:0},
+    {id:37,valor:"Diagonal",nomenclatura:"DG", type:1},
+    {id:38,valor:"Depósito",nomenclatura:"DP",type:1},
+    {id:39,valor:"Departamento",nomenclatura:"DPTO",type:1},
+    {id:40,valor:"Depósito sótano",nomenclatura:"DS",type:1},
+    {id:41,valor:"Edificio",nomenclatura:"ED",type:1},
+    {id:42,valor:"Entrada",nomenclatura:"EN",type:1},
+    {id:43,valor:"Escalera",nomenclatura:"ES",type:1},
+    {id:44,valor:"Esquina",nomenclatura:"ESQ",type:0},
+    {id:45,valor:"Este",nomenclatura:"ESTE",type:0},
+    {id:46,valor:"Etapa",nomenclatura:"ET",type:1},
+    {id:47,valor:"Exterior",nomenclatura:"EX",type:0},
+    {id:48,valor:"Finca",nomenclatura:"FCA",type:1},
+    {id:49,valor:"Garaje",nomenclatura:"GJ",type:0},
+    {id:50,valor:"Garaje Sótano",nomenclatura:"GS",type:0},
+    {id:51,valor:"Glorieta",nomenclatura:"GT",type:0},
+    {id:52,valor:"Hacienda",nomenclatura:"HC",type:1},
+    {id:53,valor:"Hangar",nomenclatura:"HG",type:1},
+    {id:54,valor:"Interior",nomenclatura:"IN",type:0},
+    {id:55,valor:"Inspección de Policía",nomenclatura:"IP",type:1},
+    {id:56,valor:"Inspección Departamental",nomenclatura:"IPD",type:1},
+    {id:57,valor:"Inspección Municipal",nomenclatura:"IPM",type:1},
+    {id:58,valor:"Kilómetro",nomenclatura:"KM",type:2},
+    {id:59,valor:"Local",nomenclatura:"LC",type:2},
+    {id:60,valor:"Local mezzanine",nomenclatura:"LM",type:2},
+    {id:61,valor:"Lote",nomenclatura:"LT",type:1},
+    {id:62,valor:"Módulo",nomenclatura:"MD",type:1},
+    {id:63,valor:"Mojón",nomenclatura:"MJ",type:1},
+    {id:64,valor:"Muelle",nomenclatura:"MLL",type:1},
+    {id:65,valor:"Mezzanine",nomenclatura:"MN",type:0},
+    {id:66,valor:"Manzana",nomenclatura:"MZ",type:0},
+    {id:67,valor:"Vías de nombre común",nomenclatura:"NOMBRE VIA",type:2},
+    {id:68,valor:"Norte",nomenclatura:"NORTE",type:0},
+    {id:69,valor:"Oriente",nomenclatura:"O",type:0},
+    {id:70,valor:"Occidente",nomenclatura:"OCC",type:0},
+    {id:71,valor:"Oeste",nomenclatura:"OESTE",type:0},
+    {id:72,valor:"Oficina",nomenclatura:"OF",type:2},
+    {id:73,valor:"Piso",nomenclatura:"P",type:2},
+    {id:74,valor:"Parcela",nomenclatura:"PA",type:1},
+    {id:75,valor:"Parque",nomenclatura:"PAR",type:1},
+    {id:76,valor:"Predio",nomenclatura:"PD",type:1},
+    {id:77,valor:"Penthouse",nomenclatura:"PH",type:2},
+    {id:78,valor:"Pasaje",nomenclatura:"PJ",type:1},
+    {id:79,valor:"Planta",nomenclatura:"PL",type:1},
+    {id:80,valor:"Puente",nomenclatura:"PN",type:1},
+    {id:81,valor:"Portería",nomenclatura:"POR",type:2},
+    {id:82,valor:"Poste",nomenclatura:"POS",type:0},
+    {id:83,valor:"Parqueadero",nomenclatura:"PQ",type:1},
+    {id:84,valor:"Paraje",nomenclatura:"PRJ",type:1},
+    {id:85,valor:"Paseo",nomenclatura:"PS",type:1},
+    {id:86,valor:"Puesto",nomenclatura:"PT",type:1},
+    {id:87,valor:"Park Way",nomenclatura:"PW",type:1},
+    {id:88,valor:"Round Point",nomenclatura:"RP",type:1},
+    {id:89,valor:"Salón",nomenclatura:"SA",type:1},
+    {id:90,valor:"Salón Comunal",nomenclatura:"SC",type:1},
+    {id:91,valor:"Salida",nomenclatura:"SD",type:1},
+    {id:92,valor:"Sector",nomenclatura:"SEC",type:1},
+    {id:93,valor:"Solar",nomenclatura:"SL",type:0},
+    {id:94,valor:"Super Manzana",nomenclatura:"SM",type:0},
+    {id:95,valor:"Semisótano",nomenclatura:"SS",type:0},
+    {id:96,valor:"Sótano",nomenclatura:"ST",type:0},
+    {id:97,valor:"Suite",nomenclatura:"SUITE",type:1},
+    {id:98,valor:"Sur",nomenclatura:"SUR",type:0},
+    {id:99,valor:"Terminal",nomenclatura:"TER",type:1},
+    {id:100,valor:"Terraplén",nomenclatura:"TERPLN",type:1},
+    {id:101,valor:"Torre",nomenclatura:"TO",type:1},
+    {id:102,valor:"Transversal",nomenclatura:"TV",type:0},
+    {id:103,valor:"Terraza",nomenclatura:"TZ",type:1},
+    {id:104,valor:"Unidad",nomenclatura:"UN",type:1},
+    {id:105,valor:"Unidad residencial",nomenclatura:"UR",type:1},
+    {id:106,valor:"Urbanización",nomenclatura:"URB",type:1},
+    {id:107,valor:"Vereda",nomenclatura:"VRD",type:1},
+    {id:108,valor:"Variante",nomenclatura:"VTE",type:1},
+    {id:109,valor:"Zona franca",nomenclatura:"ZF",type:1},
+    {id:110,valor:"Zona",nomenclatura:"ZN",type:1}
   ]
 
   buildForm(){
     this.form = this.formBuilder.group({
       nomenclatura:['',Validators.required],
-      descripcion:['',Validators.required]
+      descripcion:['',Validators.required],
+      direccion:[this.direccion],
+      direccionCompleta:[this.direccionCompleta]
+      
     })
   }
 
-  escribirNomenclatura(event:Event){
-    event?.preventDefault();
-    console.log(this.form.value.nomenclatura)
-    this.nomenclatura = this.form.value.nomenclatura
+  escribirNomenclatura(){
+    var index = this.form.value.nomenclatura;
+    this.valor = this.listaNomenclaturas[index-1].valor;
+    this.nomenclatura = this.listaNomenclaturas[index-1].nomenclatura;
+    this.type = this.listaNomenclaturas[index-1].type;
+    
+
   }
 
   cargarDireccion(){
-    this.direccion = this.direccion+this.nomenclatura+' '+this.form.value.descripcion+' ';
-    console.log(this.direccion)
+    this.descripcion = this.form.value.descripcion;
+    if(this.form.value.descripcion == null){
+      this.descripcion='';
+    }
+    this.direccion = this.direccion+this.nomenclatura+' '+this.descripcion+' ';   
+    this.direccionCompleta = this.direccionCompleta+''+this.valor+' '+this.descripcion+' ';
     this.buildForm()
 
+  }
+
+  cancelar(){
+    this.direccionCompleta='';
+    this.direccion='';
+    this.buildForm();
+  }
+  agregarDireccion(){
+    alert(this.direccion.toUpperCase())
   }
 }

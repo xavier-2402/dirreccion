@@ -5,7 +5,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog  modal-xl">
+  <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
@@ -14,25 +14,30 @@
       <div class="modal-body">
         <form [formGroup]="form" >
           <div>
-            <select class="form-control form-control-sm border-info" name="nomenclatura"  (change)="escribirNomenclatura($event)" formControlName="nomenclatura">
-              <option  [value]=" item.nomenclatura"*ngFor = "let item of listaNomenclaturas">{{item.valor}}</option>
+            <select class="form-control form-control-sm border-info" name="nomenclatura"  (change)="escribirNomenclatura()" formControlName="nomenclatura">
+              <option [value]=" item.id"*ngFor = "let item of listaNomenclaturas">{{item.valor}}</option>
             </select>
-            <input type="text" name="descripcion" formControlName="descripcion">
-            <button (click)="cargarDireccion()">Agregar</button>
+            <input  *ngIf="type==1;else numero" type="text"name="descripcion" formControlName="descripcion">
+            <ng-template #numero> <input type="number"name="descripcion" formControlName="descripcion"></ng-template>
+            <button class="btn btn-primary" (click)="cargarDireccion()">Agregar</button>
           </div>
-
-        </form>
+          <br>
+        <div>
+          <label>Dirección Completa:</label>
+          <input type="text" formControlName="direccionCompleta" readonly>
+        </div>
         <br>
         <div>
           <label>Dirección:</label>
-          <input type="text" disabled>
+          <input type="text" formControlName="direccion" readonly>
         </div>
+      </form>
        
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="cancelar()">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="agregarDireccion()">Agregar dirección</button>
       </div>
     </div>
   </div>
