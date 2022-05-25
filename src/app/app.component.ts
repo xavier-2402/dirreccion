@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { nomenclatura } from './models/nomenclatura';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -10,9 +11,20 @@ export class AppComponent  implements OnInit  {
   
   title = 'direccionTest';
 
-  ngOnInit(): void {
+  nomenclatura:string='';
+  form:any;
+  direccion:string = '';
+  
+
+  constructor(private formBuilder: FormBuilder){
     
   }
+
+  ngOnInit(): void {
+    this.buildForm();
+    
+  }
+  
 
   listaNomenclaturas: nomenclatura[]=[
     {id:1,valor:"Avenida Calle",nomenclatura:"AC"},
@@ -127,4 +139,24 @@ export class AppComponent  implements OnInit  {
     {id:110,valor:"Zona franca",nomenclatura:"ZF"},
     {id:111,valor:"Zona",nomenclatura:"ZN"}
   ]
+
+  buildForm(){
+    this.form = this.formBuilder.group({
+      nomenclatura:['',Validators.required],
+      descripcion:['',Validators.required]
+    })
+  }
+
+  escribirNomenclatura(event:Event){
+    event?.preventDefault();
+    console.log(this.form.value.nomenclatura)
+    this.nomenclatura = this.form.value.nomenclatura
+  }
+
+  cargarDireccion(){
+    this.direccion = this.direccion+this.nomenclatura+' '+this.form.value.descripcion+' ';
+    console.log(this.direccion)
+    this.buildForm()
+
+  }
 }

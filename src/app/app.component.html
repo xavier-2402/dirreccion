@@ -12,12 +12,16 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <div>
-          <select name="item">
-            <option  [value]=" item.nomenclatura"*ngFor = "let item of listaNomenclaturas">{{item.valor}}</option>
-          </select>
-          <input type="text" placeholder="descripción">
-        </div>
+        <form [formGroup]="form" >
+          <div>
+            <select class="form-control form-control-sm border-info" name="nomenclatura"  (change)="escribirNomenclatura($event)" formControlName="nomenclatura">
+              <option  [value]=" item.nomenclatura"*ngFor = "let item of listaNomenclaturas">{{item.valor}}</option>
+            </select>
+            <input type="text" name="descripcion" formControlName="descripcion">
+            <button (click)="cargarDireccion()">Agregar</button>
+          </div>
+
+        </form>
         <br>
         <div>
           <label>Dirección:</label>
