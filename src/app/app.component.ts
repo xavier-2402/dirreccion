@@ -19,6 +19,7 @@ export class AppComponent  implements OnInit  {
   valor:string=''
   type:number=1;
   descripcion:string = '';
+  mensajeHijo:string = '';
 
   constructor(private formBuilder: FormBuilder){
     
@@ -181,4 +182,9 @@ export class AppComponent  implements OnInit  {
   agregarDireccion(){
     alert(this.direccion.toUpperCase())
   }
+
+  onMensajeHijo(mensaje:any) {
+
+    this.mensajeHijo=mensaje;
+   }
 }

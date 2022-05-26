@@ -4,10 +4,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule} from '@angular/forms';
+import { ModalDireccionComponent } from './modal-direccion/modal-direccion.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ModalDireccionComponent
   ],
   imports: [
     BrowserModule,

@@ -16,6 +16,7 @@
           <div>
             <select class="form-control form-control-sm border-info" name="nomenclatura"  (change)="escribirNomenclatura()" formControlName="nomenclatura">
               <option [value]=" item.id"*ngFor = "let item of listaNomenclaturas">{{item.valor}}</option>
+              <label for="descripcion">Detalle: </label>
             </select>
             <input  *ngIf="type==1;else numero" type="text"name="descripcion" formControlName="descripcion">
             <ng-template #numero> <input type="number"name="descripcion" formControlName="descripcion"></ng-template>
@@ -42,3 +43,7 @@
     </div>
   </div>
 </div>
+
+
+<p> hola soy el componente padre {{mensajeHijo}} </p>
+<app-modal-direccion  (eventoHijo)="onMensajeHijo($event)"> </app-modal-direccion>
