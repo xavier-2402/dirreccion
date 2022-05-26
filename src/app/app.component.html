@@ -1,44 +1,17 @@
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Launch demo modal
-</button>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form [formGroup]="form" >
-          <div>
-            <select class="form-control form-control-sm border-info" name="nomenclatura"  (change)="escribirNomenclatura()" formControlName="nomenclatura">
-              <option [value]=" item.id"*ngFor = "let item of listaNomenclaturas">{{item.valor}}</option>
-            </select>
-            <input  *ngIf="type==1;else numero" type="text"name="descripcion" formControlName="descripcion">
-            <ng-template #numero> <input type="number"name="descripcion" formControlName="descripcion"></ng-template>
-            <button class="btn btn-primary" (click)="cargarDireccion()">Agregar</button>
-          </div>
-          <br>
-        <div>
-          <label>Dirección Completa:</label>
-          <input type="text" formControlName="direccionCompleta" readonly>
-        </div>
-        <br>
-        <div>
-          <label>Dirección:</label>
-          <input type="text" formControlName="direccion" readonly>
-        </div>
-      </form>
-       
 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="cancelar()">Cancelar</button>
-        <button type="button" class="btn btn-primary" (click)="agregarDireccion()">Agregar dirección</button>
-      </div>
-    </div>
-  </div>
-</div>
+<button type="button" class="btn btn-primary" (click)="openModal(templateFuncionalidad)"> Abrir segundo modal</button>
+<p> hola soy el componente padre {{mensajeHijo}} </p>
+<app-modal-funcionalidad (eventoHijo)="onMensajeHijo($event)"> </app-modal-funcionalidad>
+
+<p>Mensaje: {{mensaje}}</p>
+<ng-template #templateFuncionalidad>
+
+        <div class="modal-header">
+          <h5 class="modal-title">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeModal()"></button>
+        </div>
+        <div class="modal-body">
+          <app-modal-test (event)="cargarMensaje($event)"></app-modal-test>
+        </div>
+</ng-template>
