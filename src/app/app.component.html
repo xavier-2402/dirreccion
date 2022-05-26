@@ -1,10 +1,5 @@
 
-
 <button type="button" class="btn btn-primary" (click)="openModal(templateFuncionalidad)"> Abrir segundo modal</button>
-<p> hola soy el componente padre {{mensajeHijo}} </p>
-<app-modal-funcionalidad (eventoHijo)="onMensajeHijo($event)"> </app-modal-funcionalidad>
-
-<p>Mensaje: {{mensaje}}</p>
 <ng-template #templateFuncionalidad>
 
         <div class="modal-header">
@@ -12,6 +7,6 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeModal()"></button>
         </div>
         <div class="modal-body">
-          <app-modal-test (event)="cargarMensaje($event)"></app-modal-test>
+         <app-direccion></app-direccion>
         </div>
 </ng-template>
